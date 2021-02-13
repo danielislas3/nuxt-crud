@@ -10,7 +10,7 @@
       <li v-for="(item, index) in tareas" :key="index">
         {{ item.id }} - {{ item.nombre }}
 
-        <b-button class="btn btn-warning">Editar</b-button>
+        <b-button class="btn btn-warning" :to="`/vuex/${item.id}`">Editar</b-button>
         <b-button class="btn btn-danger" @click="eliminarTarea(item)"
           >Eliminar</b-button
         >
@@ -49,7 +49,7 @@ export default {
     ...mapState(["tareas"])
   },
   methods: {
-    ...mapActions(["agregarTarea", "eliminarTarea"])
+    ...mapActions(["agregarTarea", "eliminarTarea", "updateTarea"])
   }
 };
 </script>

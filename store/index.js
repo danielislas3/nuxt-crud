@@ -1,7 +1,8 @@
 import { db } from '@/plugins/firebase'
 
 export const state = () => ({
-  tareas: ''
+  tareas: '',
+  tarea: '',
 })
 
 export const mutations = {
@@ -14,6 +15,14 @@ export const mutations = {
   deleteTarea(state, payload) {
     const index = state.tareas.findIndex(tarea => tarea.id === payload.id)
     state.tareas.splice(index, 1)
+  },
+  updateTarea(state, payload) {
+    const index = state.tareas.findIndex(tarea => tarea.id === payload.id)
+
+    state.tareas[index].nombre = payload.nombre
+  },
+  setTareaIndividual(state, payload) {
+    state.tarea = payload
   }
 }
 
@@ -54,5 +63,20 @@ export const actions = {
       console.log('error: ', error);
 
     }
+  },
+  async editarTarea({ commit }, payload) {
+    try {
+      const doc = await db.collection('tareas').doc(payload.id).update({
+        nombre: payload.nombre
+      })
+   
+      
+      commit('updateTarea', { nombre:payload.nombre, id: payload.id })
+      this.app.router.push('/vuex')
+    } catch (error) {
+      console.log('error: ', error);
+
+    }
+
   }
 }
