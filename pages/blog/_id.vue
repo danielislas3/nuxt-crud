@@ -1,7 +1,7 @@
 <template>
   <div>
     <nuxt-link to="/blog">Atras</nuxt-link>
-    <div class="container mt-4">
+    <div class="container-fluid mt-4">
       <h3>Detalle Articulo {{ post.title }}</h3>
       <p>{{ post.body }}</p>
       <span>{{ author.name }}</span>
