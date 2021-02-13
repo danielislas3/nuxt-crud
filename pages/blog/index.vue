@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container mt-5 flex-column">
     <div class="card mt-4" v-for="(item, index) in articulos" :key="index">
       <div class="card-body ">
         <nuxt-link :to="`/blog/${item.id}`">
